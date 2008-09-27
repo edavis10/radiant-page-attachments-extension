@@ -2,7 +2,10 @@ class PageAttachment < ActiveRecord::Base
   acts_as_list :scope => :page_id
   has_attachment :storage => :file_system, 
                      :thumbnails => defined?(PAGE_ATTACHMENT_SIZES) && PAGE_ATTACHMENT_SIZES || {:icon => '50x50>'},
-                     :max_size => 10.megabytes
+                     :max_size => 10.megabytes,
+                     :partition => false,
+                     :path_prefix => 'public/images/assets'
+  
   validates_as_attachment
     
   belongs_to :created_by, :class_name => 'User', 
