@@ -1,4 +1,6 @@
 class PageAttachment < ActiveRecord::Base
+  PAGE_ATTACHMENT_SIZES = { :icon => '50x50>', :thumb => '320x200>' }
+  
   acts_as_list :scope => :page_id
   has_attachment :storage => :file_system, 
                      :thumbnails => defined?(PAGE_ATTACHMENT_SIZES) && PAGE_ATTACHMENT_SIZES || {:icon => '50x50>'},
